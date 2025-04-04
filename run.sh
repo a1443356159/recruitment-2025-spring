@@ -10,11 +10,7 @@
 #SBATCH --output=output.log              # 输出日志文件
 #SBATCH --exclusive
 #SBATCH --exclude hepnode0
-#
 
-# 加载必要的模块（根据集群环境调整）
-module purge
-module load cuda/11.8.0                  # 加载 CUDA Toolkit
 
 # 编译代码
 nvcc -O3 -Xcompiler "-O3 -march=native -fopenmp" -lcublas -lcudart -o winograd winograd.cc driver.cc
