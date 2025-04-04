@@ -4,11 +4,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-
-#include <cuda.h>
+#include <cuda_runtime.h>
 #include <cublas_v2.h>
 #include <nvml.h>
 #include "utils.h"
+#include "omp.h"
 
 void image_transform(float *__restrict__ packed_image,
                      float *__restrict__ V,
