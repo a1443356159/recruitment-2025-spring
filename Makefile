@@ -1,7 +1,7 @@
-CFLAG = -O3 -g -Wall -fopenmp
+CFLAG = -O3
 
 all:
-	g++ driver.cc winograd.cc -std=c++11 ${CFLAG} -o winograd
+	nvcc -O3 -Xcompiler "-O3 -march=native -fopenmp" -lcublas -o winograd winograd.cc driver.cc
 
 clean:
 	rm -f winograd
