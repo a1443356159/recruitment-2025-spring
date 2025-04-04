@@ -4,11 +4,13 @@
 #SBATCH --job-name=winograd_convolution  # 作业名称
 #SBATCH --nodes=1                        # 使用的节点数
 #SBATCH --ntasks-per-node=1              # 每个节点的任务数
-#SBATCH --cpus-per-task=64               # 每个任务的 CPU 核心数
-#SBATCH --gres=gpu:2                    # 请求 GPU 资源（如果需要）
+#SBATCH --cpus-per-task=64                # 每个任务的 CPU 核心数
+#SBATCH --gres=gpu:1                     # 请求 GPU 资源（如果需要）
+#SBATCH --time=00:10:00                  # 作业运行时间限制
 #SBATCH --output=output.log              # 输出日志文件
 #SBATCH --exclusive
 #SBATCH --exclude hepnode0
+#
 
 # 加载必要的模块（根据集群环境调整）
 module purge
@@ -25,9 +27,7 @@ fi
 
 # 运行程序
 export OMP_NUM_THREADS=64                 # 设置 OpenMP 线程数
-./winograd conf/vgg16.conf                               # 运行程序
+./winograd conf/vgg16.conf                           # 运行程序
 
 # 结束
 echo "Job completed."
-
-
